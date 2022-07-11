@@ -33,5 +33,6 @@ while True:
         desfaz(tarefas)
     if opcao == '4' and len(desfazer)!=0:
         faz(tarefas)
-        
+    
+    def 
     
