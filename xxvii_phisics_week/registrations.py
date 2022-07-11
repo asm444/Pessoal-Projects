@@ -3,38 +3,9 @@
 # Apresentação do Sistema de Inscrições para a XXVII Semanade da Física
 
 from os.path import isfile
+from tkinter.messagebox import NO
 
-
-print("Bem-vindo ao Sistema de Inscrições para a XXVII Semanade da Física")
-print("Opções:")
-print("1 - Inscrever-se")
-print("2 - Consultar inscrições")
-print("3 - Atualizar dados")
-print("4 - Atualizar uma inscrição")
-print("5 - Sair")
-
-publico = ['graduandos',
-            'pós-graduandos',
-            'professor',
-            'servidor',
-            'externo']
-
-grade = ['Bacharelado',
-         'Licenciatura',
-         'Mestrado',
-         'Doutorado']
-
-registro = ['nome',
-            'email',
-            'matricula',
-            'curso',
-            'grade',
-            'instituicao',
-            'tipo_de_inscricao',
-            'data_de_inscricao',
-            'estado']
-
-def inscrito(nome, email,matricula, curso, grade, instituicao, publico, data_de_inscricao, estado): 
+def inscrito_new(nome, email,matricula, curso, grade, instituicao, publico, data_de_inscricao, estado): 
         
         inscrito = dict()
         inscrito['nome'] = nome.title() #Deixando a primeira letra de cada nome em maiúscula
@@ -73,15 +44,31 @@ def Registro():
                                                                                                   database['publico'],
                                                                                                   database['data_de_inscricao'],
                                                                                                   database['estado']):            
-            inscritos.append(inscritos(nome,
-                                       email,
-                                       matricula,
-                                       curso,
-                                       grade,
-                                       instituicao,
-                                       publico,
-                                       data_de_inscricao,
-                                       estado))
+            inscritos.append(inscrito_new(nome,
+                                          email,
+                                          matricula,
+                                          curso,
+                                          grade,
+                                          instituicao,
+                                          publico,
+                                          data_de_inscricao,
+                                          estado))
+    if isfile("inscricoes.txt"):
+        with open('inscricoes.txt','r+') as file:
+            inscritos = file.readlines()
+            file.close()
+            inscritos = [ inscrito.split(" ") for inscrito in inscritos ]
+            inscritos = [ inscrito_new(inscrito[0],
+                                       inscrito[1],
+                                       inscrito[2],
+                                       inscrito[3],
+                                       inscrito[4],
+                                       inscrito[5],
+                                       inscrito[6],
+                                       inscrito[7],
+                                       inscrito[8],
+                                       inscrito[9]) for inscrito in inscritos ]
+                  
     else:
         inscritos = list()
         
@@ -89,11 +76,10 @@ def Registro():
 
 inscritos = Registro ()
         
-def inscrever(self):
-        
-    manual = input("Deseja registrar uma inscrição manualmente? (S/N) ")
-        
-    if manual.upper()=="S":
+def inscrever(manual= False):
+    if manual==False:
+        manual = input("Deseja registrar uma inscrição manualmente? (S/N) ") == "S"
+    elif manual:
         nome = input("Nome: ")
         email = input("Email: ")
         matricula = input("Matrícula: ")
@@ -103,29 +89,24 @@ def inscrever(self):
         publico = input("Publico: ")
         data_de_inscricao = input("Data de inscrição: ")
         estado = input("Estado: ")
-            
-        return inscrito(nome,
-                        email,
-                        matricula,
-                        curso,
-                        grade,
-                        instituicao,
-                        publico,
-                        data_de_inscricao,
-                        estado)
-            
+
+        subscribe = inscrito_new(nome,
+                    email,
+                    matricula,
+                    curso,
+                    grade,
+                    instituicao,
+                    publico,
+                    data_de_inscricao,
+                    estado)
+        
+        mostrar_inscrito(subscribe)
+        print("Inscrição realizada com sucesso!")
+        
+        return subscribe
     else:
-        input("As inscrições serão registradas automaticamente. Pressione ENTER para continuar.")
-            
-        from pandas import read_csv
-        from pandas import DataFrame
-            
-        df = read_csv("inscricoes.csv")
-            
-        database = DataFrame(df)
-            
-        inscritos = list()
-  
+        input("Inscrição não realizada!")
+        
 def mostrar_inscrito(inscrito):
     print("----------------------------------------------------")
     print("Nome: ", inscrito['nome'])
@@ -139,7 +120,7 @@ def mostrar_inscrito(inscrito):
     print("Estado: ", inscrito['estado'])
     print("----------------------------------------------------")          
         
-def consultar(self,acionado = [], inscritos = inscritos):
+def consultar(acionado = [], inscritos = inscritos):
     opcoes = [n for n in range(1,11) if n not in acionado]
         
     #Criando um buscador de inscrições 
@@ -164,9 +145,10 @@ def consultar(self,acionado = [], inscritos = inscritos):
         print("9 - Consultar por todas as inscrições")
     else:
         print("10 - Voltar")
-        opcao = input("\n\nDigite a opção desejada: ")
-        opcao = int(opcao)
-    if opcao == 10:
+        opcaoo = input("\n\nDigite a opção desejada: ")
+        opcaoo = int(opcaoo)
+        
+    if opcaoo == 10:
         input("Pressione ENTER para sair.")
         exit()
             
@@ -178,8 +160,7 @@ def consultar(self,acionado = [], inscritos = inscritos):
         input("Pressione ENTER para continuar.")
         return
         
-    elif opcao == 9:
-        inscritos = self.inscritos
+    elif opcaoo == 9:
             
         for inscrito in inscritos:
             mostrar_inscrito(inscrito)
@@ -217,9 +198,9 @@ def consultar(self,acionado = [], inscritos = inscritos):
                 
         if len(inscritos)== 0:
             print("Nenhum resultado encontrado.")
-            opcao = input("Gostaria de uma nova busca?(S/N) ")
+            opcaoo = input("Gostaria de uma nova busca?(S/N) ")
                 
-            if opcao.upper()=='S':
+            if opcaoo.upper()=='S':
                 print('\n\n\n')
                 consultar()
             else:
@@ -235,8 +216,113 @@ def consultar(self,acionado = [], inscritos = inscritos):
                 
             if filtrar.upper()=='S':
                 print('\n\n\n')
-                consultar(self, acionado, inscritos)
+                consultar(acionado, inscritos)
             else:
                 input("Pressione ENTER para sair.")
                 exit()
-                    
+                
+        else:
+            print("\n\n\n")
+            mostrar_inscrito(inscritos[0])
+            
+            opcaoo = input("Deseja alterar a inscrição?(S/N) ") == 'S'
+            
+            if opcaoo:
+                for chaves in inscritos[0].keys:
+                    opcaoo = input("Deseja alterar o campo " + chaves + "?(S/N) ") == 'S'
+                    if opcaoo:
+                        inscritos[0][chaves] = input("Digite o novo valor: ")
+            
+                print("\n\n\n")
+                print("Inscrição alterada com sucesso.")
+                mostrar_inscrito(inscritos[0])
+                
+                return inscritos[0]
+            
+            else:
+                input("Pressione ENTER para continuar.")
+                return
+
+print("Bem-vindo ao Sistema de Inscrições para a XXVII Semanade da Física")
+print("Opções:")
+print("1 - Inscrever-se") # Possui uma atualização de inscrição
+print("2 - Consultar inscrições") # v
+print("3 - Atualizar dados") # falta
+print("4 - Sair") # v
+
+opcao = None
+while opcao != '4':
+    opcao = input("\n\nDigite a opção desejada: ")
+
+    if opcao == '1':
+        inscrito_novo = inscrever(manual=True)
+        if inscrito_novo["matricula"] not in inscritos:
+            if inscrito_novo["email"] not in inscritos:
+                if inscrito_novo["nome"] not in inscritos:
+                    inscritos.append(inscrito_novo)
+                    inscrito_encontrado, info = None, None
+                else:
+                    inscrito_encontrado = [inscrito for inscrito in inscritos if inscrito["nome"] == inscrito_novo["nome"]][0]
+                    info = 'nome'
+            else:
+                inscrito_encontrado = [inscrito for inscrito in inscritos if inscrito["email"] == inscrito_novo["email"]][0]
+                info = 'email'        
+        else:
+            inscrito_encontrado = [inscrito for inscrito in inscritos if inscrito["matricula"] == inscrito_novo["matricula"]][0]
+            info = 'matricula'
+        
+            mostrar_inscrito(inscrito_encontrado)
+            print("\n\n\n")
+            print('Inscrição já existente.')
+    
+            opcao = input("Deseja alterar a inscrição?(S/N) ") == 'S'
+            
+            if opcao:
+                for chaves in inscritos[0].keys:
+                    opcao = input("Deseja alterar o campo " + chaves + "?(S/N) ") == 'S'
+                    if opcao:
+                        inscritos[0][chaves] = input("Digite o novo valor: ")
+            
+                    print("\n\n\n")
+                    print("Inscrição alterada com sucesso.")
+                    mostrar_inscrito(inscritos[0])
+                
+                    for i in len(inscritos):
+                        if inscritos[i][info]==inscrito_encontrado:
+                            inscritos[i] = inscrito[0]
+                      
+    if opcao == '2':
+        backup = inscritos
+        consultar(inscritos=inscritos)
+
+    if opcao == '3':
+        pass
+
+    if opcao == '4':
+        with open('inscritos.txt','w') as file:
+            for inscrito in backup:
+                file.write(str(inscrito['nome']) + ' ' + str(inscrito['email']) + ' ' + str(inscrito['matricula']) + ' ' + str(inscrito['curso']) + ' ' + str(inscrito['grade']) + ' ' + str(inscrito['instituicao']) + ' ' + str(inscrito['publico']) + ' ' + str(inscrito['data_inscricao']) + ' ' + str(inscrito['estado']) + '\n')
+            
+        file.close()
+        input("Os dados foram salvos com sucesso. Pressione ENTER para sair.")
+
+publico = ['graduandos',
+            'pós-graduandos',
+            'professor',
+            'servidor',
+            'externo']
+
+grade = ['Bacharelado',
+         'Licenciatura',
+         'Mestrado',
+         'Doutorado']
+
+registro = ['nome',
+            'email',
+            'matricula',
+            'curso',
+            'grade',
+            'instituicao',
+            'tipo_de_inscricao',
+            'data_de_inscricao',
+            'estado']              
