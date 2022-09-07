@@ -1,0 +1,33 @@
+	\chapter*{Análise dos códigos}
+\addcontentsline{toc}{chapter}{Análise dos códigos}
+
+\subsection*{O algoritmo de validação}
+
+Para realizar a comparação entre as observáveis, utilizamos como base um dos algoritmos do conjunto de teste de validação do CCL, o algoritmo de verificação dos cálculos de correlações cruzadas escrito em python chamado  \textit{test\_correlation.py}.
+
+Este algoritmo consulta um conjunto de dados de redshift, o espectro de potência angular, contraste de densidade de matéria, multipolos correspondentes ao espectro de potência de entrada, spin e entre outras grandezas cosmológicas para inicializar os traçadores, ou seja, as funções de correlação. Ele calcula o valor da função de correlação para as separações angulares fornecidas como entrada e verifica a coerência do resultado comparando com o valor do erro de cálculo estimulado.
+
+O algoritmo utiliza a estrutura de testes escalonáveis do módulo \textit{pytest} para validar os cálculos em 112 testes utilizando três traçadores:  \textit{NumberCountsTracer}, \textit{WeakLensingTracer} e \textit{CMBLensingTracer}. Os testes foram feitos com os métodos: \textit{fftlog} (Transformações rápidas de Fourier que permite menos custo computacional de processamento do que computar integrações de força bruta nos cálculos) e \textit{bessel} (método de cálculo utilizando as funções esféricas de Bessel), mas o método \textit{legendre} (Soma da força bruta sobre os polinômios de Legendre) não foi implementado.
+
+O algoritmo consulta 35 arquivos com extensão \textit{.txt} contendo o conjunto de dados, mas apenas quatro arquivos são utilizados para realizar os cálculos dos observáveis e 31 arquivos são consultados para calcular o erro estimado e validar cada um dos cálculos realizados. O algoritmo possui um problema relativamente simples de implementação relacionado a declaração do endereço do diretório dos arquivos, onde é preciso realizar uma alteração no código para que o teste de validação funcione corretamente. 
+
+\subsection*{A produção do jupyter notebook}
+Um dos interesses deste trabalho era utilizar os testes com o traçador \textit{CMBLensingTracer}, ou observáveis com spin-0 utilizando outros traçadores, afim de comparar os resultados do teste com os resultados computados pela NumCosmo utilizando os mesmos conjuntos de dados e verificar o grau de concordância entre as bibliotecas sobre esses resultados, mas infelizmente, nenhum teste com essas condições foi implementado neste algoritmo. A NumCosmo ainda não possui suporte para observáveis com spin diferente de zero e, portanto, dentre os testes do algoritmo de validação, apenas os testes utilizando o traçador  \textit{NumberCountsTracer} com spin-0 permitem a continuidade do trabalho. O algoritmo possui suporte para computar tanto os casos analíticos quanto os casos de histograma, como os cálculos de casos analíticos não foram implementados na NumCosmo, este trabalho aborda apenas casos com  os dados de histograma para a comparação entre bibliotecas, mas este fato não impede de realizarmos a comparação dos métodos diferentes em casos analíticos feitos pelo CCL.
+
+Ao adaptar o teste que utiliza o traçador \textit{NumberCountsTracer} e observáveis com spin-0 em um \textit{jupyter notebook} descartando a dependência da consulta dos 31 arquivos de validação dos resultados, a inicialização de outros traçadores e seus respectivos cálculos e assim, surgem dois desafios sobre a estrutura do código para a implementação, que seria remover a dependência do módulo \textit{pytest} e da consulta do conjunto de dados. A estrutura de testes escalonáveis do módulo \textit{pytest} é incompatível com o tipo de análise que precisamos e a consulta em vários arquivos não é interessante, pois o conjunto de dados é relativamente pequeno e podemos evitar as complicações, em outras palavras, buscamos a produção de um algoritmo simples sem complicações/problemas a mais para lidar.
+
+Com auxílio de algoritmos simples escritos em python, aproveitamos a versatilidade da linguagem para extrair os dados dos arquivos consultados e agrupamos em uma coleção ordenada dos dados nas listas dentro do \textit{jupyter notebook}. Em um estudo detalhado do comportamento do algoritmo e suas diversas funções escalonadas no teste e várias tentativas de sintetizar o código, foi possível simplificar todas as funções do algoritmo em apenas uma função, com poucas entradas, eliminando as verificações de envio de parâmetro inválidos e com os mesmos resultados que o algoritmo original apresentava.
+
+Reaproveitamos uma função de comparação de resultados entre o CCL e a NumCosmo para a produção dos gráficos de distâncias relativas, ela é responsável por construir dois gráfico organizados na horizontal, onde o primeiro apresentava as curvas dos resultados de ambas as bibliotecas e o segundo, a curva da distância relativa dos seus cálculos. A função estava definida no \textit{jupyter notebook} presente no repositório da NumCosmo chamado \textit{NumCosmoCCLTest.ipynb}, onde apresentava a comparação dos resultados computados de distância e espectro de potência de ambas as bibliotecas, demostrando a discordância/concordância de seus cálculos.
+
+Após o tratamento do algoritmo com os dados computados pelo CCL, desenvolvemos um estudo sobre a implementação dos códigos da NumCosmo ao estudar, documentar e separar os códigos anteriores do arquivo \textit{NumCosmoCCLTest.ipynb} em três arquivos que realizam a comparação dos resultados de distância, espectro de potência e o que produzimos sobre correlações cruzadas entre as bibliotecas com o objetivo de aprender a introspecção da NumCosmo no \textit{python}.
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,414 @@
+\appendix
+\chapter{Resultados}
+
+\begin{comment}
+	\section{``Exponenciação'' do operador $ d/d\lambda $}
+	\label{app1}
+	
+	Sejam $ M $ uma variedade $ C^{\omega} $, $ X $ um campo vetorial em $ M $ e $ \gamma $ uma curva integral do campo $ \vb{X} $ tais que as coordenadas de $ M $ sejam funções analíticas na imagem de $ \gamma $. Nessas condições, o operador diferencial $ d/d\lambda $ pode ser reescrito em termos de uma analogia à expansão em série de Taylor da função exponencial usual. Para isto, expandiremos as componentes do campo $ X $ em uma série de Taylor em torno do ponto $ p $ de modo que $ \gamma(0) = p $. Ou seja,
+	\begin{equation*}
+		\begin{split}
+			x^{\mu}(\gamma(0) + \varepsilon) & = \sum\limits_{n = 0}^{\infty} \frac{1}{n!}\dfrac{d^nx^{\mu}(\gamma(0 ))}{d\lambda^n} (\cancel{\gamma(0)} + \epsilon - \cancel{\gamma(0)})^n \\
+			& = \sum\limits_{n = 0}^{\infty} \frac{1}{n!} \left( \varepsilon^n\dfrac{d^n}{d\lambda^n} \right) x^{\mu}(p) = \\
+			& = \exp\left(\varepsilon\dfrac{d}{d\lambda}\right)x^{\mu}(p).
+		\end{split}
+	\end{equation*}
+	
+	Observe que $ \exp\left(\varepsilon\frac{d}{d\lambda}\right) $ é um \textbf{operador}, portanto é uma função $ \xi: \mathcal{F} \to \mathbb{R}^n $, onde $ \mathcal{F} $ é o conjunto das curvas integrais de $ M^n $. Além disso, este operador é escrito em termos de uma série de Taylor e a utilização da exponencial é apenas um notação. 
+	
+	\begin{prop}
+		Sejam $ a, b \in M^n $, variedade $ n $-dimensional $ C^\omega $, $ \lambda \textrm{ e } \mu $ duas curvas integrais, de modo que as coord. de $ M $ sejam $ C^{\omega} $ em $ Im(\lambda) \textrm{ e } Im(\mu) $. Deste modo, prova-se que:
+		\begin{equation}
+			\exp(a\frac{d}{d\lambda} + b\frac{d}{d\mu}) = \exp(a\frac{d}{d\lambda})\exp(b\frac{d}{d\mu}),
+		\end{equation}
+		se, e somente se, $ \frac{d}{d\lambda} \textrm{ e } \frac{d}{d\mu} $ comutam.
+	\end{prop}
+
+\end{comment}
+
+	%\section{Identidade de Jacobi para campos vetoriais}\label{idjacobi}
+	
+		
+	
+	%\section{Teorema das matrizes diagonais}
+	%\label{app2}
+		
+	
+	\begin{comment}section{Teorema da função inversa}
+	
+	Neste apêndice, apresentaremos alguns resultados envolvendo funções diferenciáveis e suas inversas, que juntos culminam na demonstração parcial do teorema da função inversa. Os resultados aqui obtidos são gerais e podem ser encontrados em sua forma particular (para funções cujo domínio e o contradomínio são subconjuntos do $\mathbb{R}^2$) no livro três da coleção ``Um curso de Cálculo'' de Hamilton L. Guidorizzi.
+	
+		\subsection{Função Inversa}
+	
+		Iniciaremos definindo funções inversas de forma conveniente para que possamos fazer uso posterior.
+	
+		\begin{defin}
+			Seja $F: A \subset \mathbb{R}^n \rightarrow \mathbb{R}^n$ uma função injetora e $B = F(A)$. Assim, para cada $Y \in A$, existe um único $X \in B$ tal que
+			$$ F(Y) = X.$$
+			A função $G:B \rightarrow A$ dada por
+			$$ F(Y) = X \Leftrightarrow G(X) = Y $$
+			É denominada função inversa de $F$.
+		\end{defin}
+	
+		Como $F$ é inversível, se podermos escrever $F(x) = (f_1(x), f_2(x), \ldots, f_n(x))$ com $x\in A$, então dado $u \in B$,	
+		\begin{equation*}
+		\label{eqa1}
+		\begin{cases}
+		u_1 =  f_1(x) \\
+		u_2 =  f_2(x) \\
+		\vdots\\
+		u_n =  f_n(x) \\
+		\end{cases}
+		\Leftrightarrow
+		\begin{cases}
+		x_1 = \varphi_1(u) \\
+		x_2 =  \varphi_2(u) \\
+		\vdots\\
+		x_n =  \varphi_n(u) \\
+		\end{cases}
+		\end{equation*}	
+		\begin{defin}
+			Seja $F: \Omega_1 \subset \mathbb{R}^n \rightarrow \mathbb{R}^n$ ($\Omega_1$ aberto) uma função diferenciável. Deste modo, existe uma matriz para cada $p \in \Omega_1$ dada por
+			
+			\begin{equation} \label{eqa2} J_F(p) = 
+			\begin{bmatrix}
+			\dfrac{\partial F_1}{\partial x_1}(p) & \dots & \dfrac{\partial F_1}{\partial x_n}(p) \\
+			\vdots & \ddots & \vdots \\
+			\dfrac{\partial F_n}{\partial x_1}(p) & \dots & \dfrac{\partial F_n}{\partial x_n}(p) \\
+			\end{bmatrix}
+			\end{equation}
+			
+			\noindent que é denominada a matriz jacobiana de $F$ no ponto $p$. 
+		\end{defin}
+		
+		\subsection{Um resultado interessante...}
+		
+		Seja $F: \Omega_1 \subset \mathbb{R}^n \rightarrow \mathbb{R}^n$ ($\Omega_1$ aberto) uma função diferenciável e inversível em $\Omega_1$ com inversa $G: \Omega_2 \rightarrow \Omega_1$ ($\Omega_2 = F(\Omega_1)$). Supondo $G$ diferenciável e que $J_F(x)$ seja inversível, e $x \in \Omega_1$ e $ u \in \Omega_2$ com $u = F(x)$, tem-se que
+		
+		$$ J_G(u)  =[J_F(x)]^{-1}.$$
+		
+		\begin{proof}
+			Como $F$ é inversível, para cada $x \in \Omega_1$ e $ u \in \Omega_2$,			
+			\begin{equation*}
+			\label{eqa3}
+			\begin{cases}
+			u_1 =  f_1(x) \\
+			u_2 =  f_2(x) \\
+			\vdots\\
+			u_n =  f_n(x) \\
+			\end{cases}
+			\Leftrightarrow
+			\begin{cases}
+			x_1 = \varphi_1(u) \\
+			x_2 =  \varphi_2(u) \\
+			\vdots\\
+			x_n =  \varphi_n(u) \\
+			\end{cases}
+			\end{equation*}			
+			\noindent Derivando ambos os lados de $u_i = f_i(x)$ em relação à $u_i$, $i = 1, \ldots, n$, obtém-se			
+			\begin{equation*}
+			\label{eqa4}
+			\begin{split}
+			1 = \dfrac{df_i}{du_i}(x) & = \dfrac{d}{du_i}[f_i(\varphi_1(u), \varphi_2(u), \ldots, \varphi_n(u))] = \\
+			& = \dfrac{\partial f_i(\varphi_1(u), \varphi_2(u), \ldots, \varphi_n(u))}{\partial x_1} \cdot \dfrac{\partial \varphi_1(u)}{\partial u_i} + \\
+			& + \dfrac{\partial f_i(\varphi_1(u), \varphi_2(u), \ldots, \varphi_n(u))}{\partial x_2} \cdot \dfrac{\partial \varphi_2(u)}{\partial u_i} + \dots \\
+			& \dots + \dfrac{\partial f_i(\varphi_1(u), \varphi_2(u), \ldots, \varphi_n(u))}{\partial x_n} \cdot \dfrac{\partial \varphi_n(u)}{\partial u_i} = \\
+			& = \sum_{k=1}^{n} \dfrac{\partial f_i}{\partial x_k} \cdot \dfrac{\partial x_k}{\partial u_i}.
+			\end{split}
+			\end{equation*}			
+			\noindent Por outro lado, se $j = 1, 2, \ldots, n$ é tal que $j \neq i$, derivando ambos os lados em relação à $u_j$, analogamente obtém-se:			
+			\begin{equation*}
+			\label{eqa5}
+			0 = \sum_{k=1}^{n} \dfrac{\partial f_i}{\partial x_k} \cdot \dfrac{\partial x_k}{\partial u_j}.
+			\end{equation*}			
+			\noindent Mas além disso,			
+			\begin{equation*}
+			\label{eqa6}
+			\begin{bmatrix}
+			\dfrac{\partial F_1}{\partial x_1} & \dots & \dfrac{\partial F_1}{\partial x_n} \\
+			\vdots & \ddots & \vdots \\
+			\dfrac{\partial F_n}{\partial x_1} & \dots & \dfrac{\partial F_n}{\partial x_n} \\
+			\end{bmatrix}
+			\cdot
+			\begin{bmatrix}
+			\dfrac{\partial x_1}{\partial u_1} & \dots & \dfrac{\partial x_1}{\partial u_n} \\
+			\vdots & \ddots & \vdots \\
+			\dfrac{\partial x_n}{\partial u_1} & \dots & \dfrac{\partial x_n}{\partial u_n} \\
+			\end{bmatrix} = 
+			\begin{bmatrix}
+			c_{11} & \dots & c_{1n} \\
+			\vdots & \ddots & \vdots \\
+			c_{n1} & \dots & c_{nn} \\
+			\end{bmatrix},
+			\end{equation*}
+			\noindent em que cada 
+			$$c_{ij} = \sum_{k=1}^{n} \dfrac{\partial f_i}{\partial x_k} \cdot \dfrac{\partial x_k}{\partial u_j}.$$	
+			Logo, se $i = j$, $c_{ij} = 1$ e se $i \neq j$, $c_{ij} = 0$. Portanto a matriz $[c_ij]_{n\times n}$ é a matriz identidade e por fim:			
+			\begin{equation*}
+			\label{eqa7}
+			\begin{bmatrix}
+			\dfrac{\partial x_1}{\partial u_1} & \dots & \dfrac{\partial x_1}{\partial u_n} \\
+			\vdots & \ddots & \vdots \\
+			\dfrac{\partial x_n}{\partial u_1} & \dots & \dfrac{\partial x_n}{\partial u_n} \\
+			\end{bmatrix} = 
+			\begin{bmatrix}
+			\dfrac{\partial F_1}{\partial x_1} & \dots & \dfrac{\partial F_1}{\partial x_n} \\
+			\vdots & \ddots & \vdots \\
+			\dfrac{\partial F_n}{\partial x_1} & \dots & \dfrac{\partial F_n}{\partial x_n} \\
+			\end{bmatrix}^{-1}.
+			\end{equation*}
+		\end{proof}
+		
+		\subsection{Diferenciabilidade da Função Inversa}
+		
+		\begin{defin}\label{def3} Sejam $\Omega \subset \mathbb{R}^n$ um conjunto aberto, $F: \Omega \rightarrow \mathbb{R}^n$ e $p\in \Omega$. A função $F$ é diferenciável em $p$ se, e somente se, existem uma matriz $M_{n}$ e uma função resto $R: \Omega \rightarrow \mathbb{R}^n$ tais que:
+			\begin{enumerate}[(i)]
+				\item $F(x) = F(p) + M(x-p) + R(x)$;
+				\item $\lim\limits_{x\to p} \dfrac{|| R(x) ||}{|| x - p ||} = 0.$
+			\end{enumerate}
+		\end{defin}
+		
+		\noindent \textbf{Obs.:} Quando uma função é diferenciável em um ponto, a matriz $M$ é única e é a matriz jacobiana da função calculada no ponto. \\
+		
+		Sejam $F: \Omega_1 \subset \mathbb{R}^n \rightarrow \mathbb{R}^n$ ($\Omega_1$ aberto) dada por $F(x) = (f_1(x), f_2(x), \ldots, f_n(x))$ uma função diferenciável e inversível em $\Omega_1$ com inversa $G: \Omega_2 \rightarrow \Omega_1$ ($\Omega_2 = F(\Omega_1)$) e $p \in \Omega_1$. Se $J_F(p)$ é inversível e $G$ é continua em $u = F(p)$, então $G$ é diferenciável em $u$.
+	
+		\begin{proof}
+			Pela definição de funções diferenciáveis, deve-se mostrar que para $u\in \Omega_2$ existe uma matriz $\overline{M}_n$ e uma função resto $\overline{R}: \Omega_2 \rightarrow \mathbb{R}^n$ tais que:
+			\begin{enumerate}[(i)]
+				\item $G(v) = G(u) + \overline{M}(v-u) + \overline{R}(v)$;
+				\item $\lim\limits_{v\to u} \dfrac{|| \overline{R}(v) ||}{|| v - u ||} = 0.$
+			\end{enumerate}
+			
+			Veja que sempre existe uma função resto, basta escolher			
+			\begin{equation*}
+			\label{eqa8}
+			\overline{R}(v) = G(v) - G(u) - \overline{M}(v-u).
+			\end{equation*}			
+			\noindent Que escrito da forma matricial resulta em:			
+			\begin{equation}
+			\label{eqa9}
+			\begin{bmatrix}
+			\overline{R}_1(v) \\
+			\overline{R}_2(v) \\
+			\vdots\\
+			\overline{R}_n(v) \\
+			\end{bmatrix} =
+			\begin{bmatrix}
+			g_1(v) - g_1(u) \\
+			g_2(v) - g_2(u) \\
+			\vdots\\
+			g_n(v) - g_n(u) \\
+			\end{bmatrix} - \overline{M}
+			\begin{bmatrix}
+			v_1 - u_1 \\
+			v_2 - u_2 \\
+			\vdots\\
+			v_n - u_n \\
+			\end{bmatrix}.
+			\end{equation}			
+			Além disso, como $F$ é diferenciável, temos que:
+			\begin{equation}
+			\label{eqa10}
+			\begin{bmatrix}
+			R_1(x) \\
+			R_2(x) \\
+			\vdots\\
+			R_n(x) \\
+			\end{bmatrix} =
+			\begin{bmatrix}
+			f_1(x) - f_1(p) \\
+			f_2(x) - f_2(p) \\
+			\vdots\\
+			f_n(x) - f_n(p) \\
+			\end{bmatrix} - M
+			\begin{bmatrix}
+			x_1 - p_1 \\
+			x_2 - p_2 \\
+			\vdots\\
+			x_n - p_n \\
+			\end{bmatrix}
+			\end{equation}			
+			\noindent em que $M = J_F(p)$. Como $M$ é suposta inversível, multiplicando ambos os lados de (3) por $M^{-1}$, obtém-se:			
+			\begin{equation*} \label{eqa11} M^{-1}
+			\begin{bmatrix}
+			R_1(x) \\
+			R_2(x) \\
+			\vdots\\
+			R_n(x) \\
+			\end{bmatrix} = M^{-1}
+			\begin{bmatrix} 
+			f_1(x) - f_1(p) \\
+			f_2(x) - f_2(p) \\
+			\vdots\\
+			f_n(x) - f_n(p) \\
+			\end{bmatrix} -
+			\begin{bmatrix}
+			x_1 - p_1 \\
+			x_2 - p_2 \\
+			\vdots\\
+			x_n - p_n \\
+			\end{bmatrix}.
+			\end{equation*}			
+			\noindent Aplicando uma mudança de variáveis, temos:			
+			\begin{equation} \label{eqa12} M^{-1}
+			\begin{bmatrix}
+			R_1(\varphi(v)) \\
+			R_2(\varphi(v)) \\
+			\vdots\\
+			R_n(\varphi(v)) \\
+			\end{bmatrix} = M^{-1}
+			\begin{bmatrix} 
+			v_1 - u_1 \\
+			v_2 - u_2 \\
+			\vdots\\
+			v_n - u_n \\
+			\end{bmatrix} -
+			\begin{bmatrix}
+			g_1(v) - g_1(u) \\
+			g_2(v) - g_2(u) \\
+			\vdots\\
+			g_n(v) - g_n(u) \\
+			\end{bmatrix}.
+			\end{equation}			
+			\noindent Assim, ao comparar as equações (\ref{eqa9}) e (\ref{eqa12}), percebe-se que:			
+			\begin{equation*} \label{eqa13}
+			-M^{-1}
+			\begin{bmatrix}
+			R_1(\varphi(v)) \\
+			R_2(\varphi(v)) \\
+			\vdots\\
+			R_n(\varphi(v)) \\
+			\end{bmatrix} =
+			\begin{bmatrix}
+			\overline{R}_1(v) \\
+			\overline{R}_2(v) \\
+			\vdots\\
+			\overline{R}_n(v) \\
+			\end{bmatrix}				
+			\end{equation*}		
+			\noindent Deste modo, para mostrar que 			
+			\begin{equation}\label{eqa14}
+			\lim\limits_{v\to u} \dfrac{|| \overline{R}(v) ||}{|| v - u ||} = 0,
+			\end{equation}		
+			\noindent basta mostrar que 		
+			\begin{equation}\label{eqa15}
+			\lim\limits_{v\to u} \dfrac{|| R(\varphi(v)) ||}{|| v - u ||} = 0.
+			\end{equation}			
+			\noindent Aplicando outra mudança de variável, temos:	
+			\begin{equation*}\label{eqa16}
+			\lim\limits_{v\to u} \dfrac{|| R(\varphi(v)) ||}{|| v - u ||} = \lim\limits_{x\to p} \dfrac{|| R(x) ||}{|| F(x) - F(p) ||} = \lim\limits_{x\to p} \dfrac{|| R(x) ||}{||x-p||} \cdot \dfrac{||x - p||}{|| F(x) - F(p) ||}.
+			\end{equation*}		
+			\noindent Assim, como sabemos que  		
+			\begin{equation*}\label{eqa17}
+			\lim\limits_{x\to p} \dfrac{|| R(x) ||}{||x-p||} = 0, 
+			\end{equation*}	
+			\noindent se mostrarmos que $\frac{||x - p||}{|| F(x) - F(p) ||}$ é limitado, o limite $\lim\limits_{v\to u} \frac{|| R(\varphi(v)) ||}{|| v - u ||} = 0$.		
+\newpage	
+			\begin{notation}
+				Entenderemos por 
+				
+				$$ \norm{\begin{bmatrix}
+					x_1\\
+					\vdots \\
+					x_n\\
+					\end{bmatrix}} = \norm{(x_1, \dots, x_n)}.$$
+			\end{notation}
+			
+			Por hipótese, a função $F$ é diferenciável. Assim, pela equação (\ref{eqa10}):			
+			\begin{equation}\label{eqa18} \norm{
+				\begin{bmatrix}
+				f_1(x) - f_1(p) \\
+				f_2(x) - f_2(p) \\
+				\vdots\\
+				f_n(x) - f_n(p) \\
+				\end{bmatrix}} \geqslant \norm{M
+				\begin{bmatrix}
+				x_1 - p_1 \\
+				x_2 - p_2 \\
+				\vdots\\
+				x_n - p_n \\
+				\end{bmatrix}} - \norm{
+				\begin{bmatrix}
+				R_1(x) \\
+				R_2(x) \\
+				\vdots\\
+				R_n(x) \\
+				\end{bmatrix}}
+			\end{equation}			
+			\noindent Além disso, sabemos que a matriz $M$ é a matriz jacobiana de $F$ calculada em $p\in \Omega_1$. Ou seja, $x \mapsto M[x]$ é uma transformação linear, logo contínua, que se anula apenas em $x = 0$.
+		
+			Seja $S = \{x \in \mathbb{R}^n | {x_1}^2 + {x_2}^2 + \ldots + {x_n}^2 = 1 \}$ e $\varphi: S \rightarrow \mathbb{R}$ dada por $\varphi(x) = \norm{M[x]}$. Assim, S é compacto e como $\varphi$ é contínua, segue que $\varphi$ é limitada. Logo, assume um valor mínimo e um valor máximo. O valor mínimo não pode ser $0$ pois $0 \notin S$. Deste modo, consideremos $k > 0$ o valor mínimo de $\varphi(x)$, ou seja, $\forall x \in S$,		
+			$$ \varphi(x) \geqslant k $$ 		
+			\noindent Porém, dado $x,p \in S$ com $p \neq x$,			
+			\begin{equation*} \label{eqa19}
+			\norm{\left( \dfrac{x_1 - p_1}{\norm{x - p}}, \dfrac{x_2 - p_2}{\norm{x - p}}, \dots,  \dfrac{x_n - p_n}{\norm{x - p}} \right)} = 1.
+			\end{equation*}			
+			\noindent Para simplificar a notação, denotaremos por $r_i = \frac{x_i - p_i}{\norm{x - p}}$, em que $i=1,2, \ldots, n$. Assim, podemos concluir que:			
+			\begin{equation} \label{eqa20}
+			\norm{M \begin{bmatrix}
+				r_1 \\ r_2 \\ \vdots \\ r_n
+				\end{bmatrix}} \geqslant k.
+			\end{equation} 			
+			\noindent Da desigualdade (\ref{eqa18}), temos que:			
+			\begin{equation*} \label{eqa21}
+			\begin{split}
+			\dfrac{||x - p||}{|| F(x) - F(p) ||} & \leqslant \dfrac{||x - p||}{\norm{M
+					\begin{bmatrix}
+					x_1 - p_1 \\
+					x_2 - p_2 \\
+					\vdots\\
+					x_n - p_n \\
+					\end{bmatrix}} - \norm{
+					R(x)}}  = \dfrac{1}{\norm{M
+					\begin{bmatrix}
+				r_1 \\
+				r_2 \\
+				\vdots\\
+				r_n \\
+				\end{bmatrix}} - \dfrac{\norm{
+					R(x)}}{\norm{x-p}}}.
+			\end{split}
+			\end{equation*}			
+			\noindent Porém, tendo em vista a desigualdade (\ref{eqa20}):			
+			\begin{equation*} \label{eqa22}
+			\norm{M 
+				\begin{bmatrix}
+				r_1 \\ 
+				r_2 \\ 
+				\vdots \\ 
+				r_n
+				\end{bmatrix}} 
+			\geqslant k \Longleftrightarrow \dfrac{1}{\norm{M 
+					\begin{bmatrix}
+					r_1 \\ 
+					r_2 \\ 
+					\vdots \\ 
+					r_n
+					\end{bmatrix}}} \leqslant \dfrac{1}{k}.
+			\end{equation*} 			
+			\noindent Assim, podemos obter a partir da desigualdade acima que:			
+			\begin{equation*}
+			\dfrac{1}{\norm{M
+					\begin{bmatrix}
+					r_1 \\
+					r_2 \\
+					\vdots\\
+					r_n \\
+					\end{bmatrix}} - \dfrac{\norm{
+						R(x)}}{\norm{x-p}}}
+			\leqslant 
+			\dfrac{1}{k -  \dfrac{\norm{
+						R(x)}}{\norm{x-p}}}.
+			\end{equation*}					
+			\noindent Por outro lado, pela igualdade (\ref{eqa14}), pode-se dizer que existe um $k_1 > 0$ tal que $\forall x \neq p$,		
+			\begin{equation*}
+			\norm{x-p} < k_1 \Rightarrow \dfrac{\norm{R(x)}}{\norm{x-p}} < \dfrac{k}{2}
+			\end{equation*}			
+			\noindent Deste modo, 			
+			\begin{equation*}
+			\dfrac{||x - p||}{|| F(x) - F(p) ||} \leqslant \dfrac{2}{k}
+			\end{equation*}			
+			\noindent Logo, o limite $\lim\limits_{v\to u} \dfrac{|| R(\varphi(v)) ||}{|| v - u ||} = 0$, e portanto, $G$ é diferenciável em $u$.
+		\end{proof}
+	\end{comment}
+	
