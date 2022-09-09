@@ -1,0 +1,275 @@
+\documentclass[12pt,a4paper,oneside,brazil]{abntex2}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[osf]{mathpazo}
+\renewcommand{\familydefault}{\rmdefault}
+\pagestyle{headings}
+\setcounter{secnumdepth}{3}
+\usepackage{lmodern}
+\setcounter{tocdepth}{3}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, array}
+\usepackage{float} 
+\usepackage{calc, cases}
+\usepackage[makeroom]{cancel}
+\usepackage{nicefrac}
+
+\usepackage{booktabs} 
+\usepackage{subfig}
+\usepackage{latexsym}
+\usepackage[active]{srcltx}
+\usepackage{graphicx} 
+\graphicspath{ {figures/} }
+\usepackage{indentfirst}
+\usepackage{xcolor} 
+\usepackage{url} 
+\usepackage{relsize} 
+\usepackage{microtype}
+\OnehalfSpacing 
+\makeatletter 
+\pdfpageheight\paperheight 
+\pdfpagewidth\paperwidth 
+\providecommand{\tabularnewline}{\\} 
+\raggedbottom 
+\bookmarksetup{numbered} 
+\setlength{\parindent}{1.3cm} 
+\renewcommand{\cftsubsectionfont}{\footnotesize\normalfont\rmfamily} 
+\renewcommand{\cftsectionfont}{\normalfont\rmfamily} 
+\renewcommand{\ABNTEXchapterfont}{\rmfamily\fontseries{b}\selectfont} 
+\usepackage{braket}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{hobby}
+\usetikzlibrary{angles}
+\usetikzlibrary{quotes}
+\usepackage{eufrak}
+\usepackage{epstopdf}
+\usepackage[makeroom]{cancel}
+\usepackage{physics}
+
+%% Índices
+
+\theoremstyle{definition}
+\newtheorem{defin}{Definição}
+\numberwithin{defin}{section}
+
+\newtheorem{thm}{Teorema}
+\numberwithin{thm}{section}
+
+\newtheorem{notation}{Notação}
+\numberwithin{notation}{section}
+
+\theoremstyle{remark}
+
+\newtheorem*{sol}{Solução}
+
+\newtheorem{exmp}{Exemplo}
+\numberwithin{exmp}{section}
+
+\newtheorem*{obs}{Observação}
+\newtheorem*{obss}{Observações}
+
+\newtheorem*{prop}{Propriedade}
+\newtheorem*{props}{Propriedade}
+
+\newtheorem{p}{Proposição}
+\numberwithin{p}{section}
+
+\newtheorem{lema}{Lema}
+\numberwithin{lema}{section}
+
+
+%% Exemplos Especiais
+
+\newtheorem*{exmp1}{Exemplo (Comutador)}
+
+
+\newcommand\restr[2]{{
+		\left.\kern-\nulldelimiterspace 
+		#1 
+		\vphantom{\big|} 
+		\right|_{#2} 
+}}
+
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+
+\newcommand\numeq[1]%
+{\stackrel{\scriptscriptstyle(\mkern-1.5mu#1\mkern-1.5mu)}{=}}
+
+% Esse pacote pode ser editado. Por exemplo, onde estÃ¡ escrito {Autor}, dentro dos colchetes vocÃª pode colocar o seu nome, e assim por diante.
+
+\hypersetup{
+	pdftitle={Relatório de Iniciação Científica}, 
+	pdfauthor={ARTHUR DE SOUZA MOLINA},
+	pdfsubject={\imprimirpreambulo},
+	pdfcreator={abnTeX2},
+	pdfkeywords={Ferramentas para Explorar
+		a Radiação Cósmica de Fundo e suas Anomalias}{Cosmologia}{Cálculo Numérico}{Estatística}{Correlação Cruzada},
+	colorlinks=true,
+	linkcolor=black, %VocÃª pode mudar os cores dos links, i.e red, green, blue, etc.
+	citecolor=black,
+	filecolor=black,
+	urlcolor=black,
+	bookmarksdepth=4
+}
+
+\makeatother 
+
+
+
+%% Novo estilo
+\makepagestyle{estilo_pretextual} %%% escolha um nome
+\makeevenhead{estilo_pretextual}{}{}{\ABNTEXfontereduzida \textbf \thepage}
+\makeoddhead{estilo_pretextual}{}{}{\ABNTEXfontereduzida \textbf \thepage}
+
+%% Customiza comando \pretextual
+\renewcommand{\pretextual}{
+	\pagenumbering{roman} %%% ou \pagenumbering{Roman}
+	\aliaspagestyle{chapter}{estilo_pretextual}
+	\pagestyle{estilo_pretextual}
+	\aliaspagestyle{cleared}{empty}
+	\aliaspagestyle{part}{estilo_pretextual}
+}
+
+\begin{document}
+	
+	\bookmarksetupnext{rellevel=-1}
+	
+	\pdfbookmark[1]{Capa}{Capa}
+	\thispagestyle{empty}
+	\begin{center}
+		\includegraphics[width=14.8cm]{figuras/logo} 
+		\par\end{center}
+	
+	\begin{center}
+		{\color{green!45!black} \rule{1\columnwidth}{1.5mm}}
+		\par\end{center}
+	
+	\begin{center}
+		\medskip{}
+		\par\end{center}
+	
+	\begin{center}
+		{\Large{}ARTHUR DE SOUZA MOLINA}
+		\par\end{center}{\Large \par}
+	
+	\begin{center}
+		\vfill{}
+		\par\end{center}
+	
+	\begin{DoubleSpace}
+		\begin{center}
+			\textbf{\Large{}Termodinâmica de Buracos Negros AdS}
+			\par\end{center}{\Large \par}
+	\end{DoubleSpace}
+	
+	\begin{center}
+		\vfill{}
+		\par\end{center}
+	
+	\begin{center}
+		{\color{green!45!black} \rule{1\columnwidth}{1.5mm}}
+		\par\end{center}
+	
+	\begin{center}
+		Londrina \\
+		2022
+		\par\end{center}
+	
+	\cleardoublepage{}
+	
+	\pdfbookmark[1]{Folha de rosto}{Folha de rosto}
+	\thispagestyle{empty}
+	\begin{center}
+		{\Large{}ARTHUR DE SOUZA MOLINA}
+		\par\end{center}{\Large \par}
+	
+	\begin{center}
+		\vfill{}
+		\par\end{center}
+	
+	\begin{DoubleSpace}
+		\begin{center}
+			\textbf{\Large{}Termodinâmica de Buracos Negros AdS}
+			\par\end{center}{\Large \par}
+	\end{DoubleSpace}
+	
+	\begin{center}
+		\vfill{}
+	
+		\par\end{center}
+	
+	\noindent \begin{flushright}
+		\begin{minipage}[c]{9.5cm}%
+			Artigo de Divulgação Científica apresentado ao Departamento de Física da Universidade Estadual de Londrina, como requisito para a disciplina Introdução à Técnicas de Ensino e Pesquisa em Física.
+		\end{minipage}
+		\par\end{flushright}
+	
+	\vfill{}
+	
+	\begin{center}
+		Londrina\\
+		2021
+		\par\end{center}
+	
+	\newpage{}
+	
+	
+		
+	\setlength{\absparsep}{18pt}
+	
+	\begin{resumo}
+		
+		teste
+		
+		\textbf{Palavras-chave:} Termodinâmica. Buracos Negros. Radiação Hawking. Espaço AdS. Constante Cosmológica.
+	\end{resumo}
+	
+	
+	
+	\begin{SingleSpace}
+		\noindent Molina, Arthur de Souza \textbf{Tools for Exploring Cosmic Background Radiation and its Anomalies}. 2021.
+		Scientific Initiation Report in Physics \textendash{} Universidade
+		Estadual de Londrina, Londrina, 2022.
+	\end{SingleSpace}
+	
+	\setlength{\absparsep}{18pt}
+	
+	\begin{resumo}[Abstract]
+		
+		\begin{otherlanguage*}{english}
+			test 
+			
+			\textbf{Keywords:} Cosmology. Numerical Calculation. Statistics. Cross-correlation.
+		\end{otherlanguage*}
+		
+	\end{resumo}
+	
+	\pdfbookmark[0]{\listfigurename}{lof}
+	
+	\listoffigures*
+	
+	
+	%\pdfbookmark[0]{\listtablename}{lot}
+	
+	%\listoftables*
+	
+	
+	\cleardoublepage
+	
+	\pdfbookmark[0]{\contentsname}{toc}
+	
+	\tableofcontents*
+	
+	\cleardoublepage
+	
+	\textual
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+
+	
+	\postextual
+	\bibliographystyle{abntex2-num}
+	
+	\include{Textos/Introducao.tex}
+	
+\end{document}
